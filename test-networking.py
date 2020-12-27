@@ -10,8 +10,7 @@ neural_network = NeuralNetwork([
 ])
 
 neural_network.servers = [
-    ('gitd.nautilus.net',16000),
-    ('adrian.nautilus.net',16000),
+    ('localhost',16000),
 ]
 
 training_set = [
@@ -30,4 +29,5 @@ for _set in training_set:
     _tout = round(_tout,3)
     error = _nout - _tout
     error = round(error,3)
-    print(f'{_tout} | {_nout}: {error}')
+    print(f'Y: {_tout}\ny: {_nout}\nE: {error}\n')
+

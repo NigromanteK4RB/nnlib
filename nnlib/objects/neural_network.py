@@ -103,8 +103,8 @@ class MLPNeuralNetwork(BaseNeuralNetwork):
                 error = neural_network.getError(training_set)
                 _iter += 1
                 if (_iter % 10000) == 0 and verbose:
-                    print(_iter,error)
+                    print(f"iter: {_iter}\nerror: {error}\n")
         except KeyboardInterrupt:
             pass
-        print(_iter,error)
+        print(f"iter: {_iter}\nerror: {error}\n")
 

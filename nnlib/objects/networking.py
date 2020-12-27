@@ -37,8 +37,8 @@ class NetworkedMLPNeuralNetwork(MLPNeuralNetwork):
                     server.send([neural_network,*random.choice(training_set)])
                 _iter += 1
                 if (_iter % 10000) == 0 and verbose:
-                    print(f"iter: {_iter}, error: {error}, servers: {len(servers)}")
+                    print(f"iter: {_iter}\nerror: {error}\nservers: {len(servers)}\n")
         except KeyboardInterrupt:
             pass
-        print(f"iter: {_iter}, error: {error}")
+        print(f"iter: {_iter}\nerror: {error}\nservers: {len(servers)}\n")
 

@@ -16,8 +16,8 @@ class ThreadedMLPNeuralNetwork(MLPNeuralNetwork):
                     threads = [executor.submit(neural_network.getDeltas,*random.choice(training_set)) for thread in range(os.cpu_count())]
                     _iter += 1
                     if (_iter % 10000) == 0 and verbose:
-                        print(f"iter: {_iter}, error: {error}, threads: {len(threads)}")
+                        print(f"iter: {_iter}\nerror: {error}\nthreads: {len(threads)}\n")
         except KeyboardInterrupt:
             pass
-        print(f"iter: {_iter}, error: {error}")
+        print(f"iter: {_iter}\nerror: {error}\nthreads: {len(threads)}\n")
 
