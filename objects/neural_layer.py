@@ -12,6 +12,8 @@ class MLPNeuralLayer(BaseNeuralLayer):
 
     def sum(neural_layer, inputs):
         return [neuron(inputs) for neuron in neural_layer]
+
+    __call__ = sum
     
     def getOutputs(neural_layer):
         return [neuron.output for neuron in neural_layer]

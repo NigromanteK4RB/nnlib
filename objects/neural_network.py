@@ -1,3 +1,5 @@
+import random
+
 class BaseNeuralNetwork(list):
     ALPHA = 0.5
     MINIMUM_ERROR = 0.0001
@@ -7,7 +9,7 @@ class BaseNeuralNetwork(list):
 
     __call__ = sum
 
-    def getDeltas(neural_network, inputs, outputs)
+    def getDeltas(neural_network, inputs, outputs):
         raise NotImplementedError
 
     def applyDeltas(neural_network, deltas):
@@ -24,8 +26,10 @@ class MLPNeuralNetwork(BaseNeuralNetwork):
     def sum(neural_network, inputs):
         outputs = inputs
         for neural_layer in neural_network:
-            outputs = neural_layer(output)
+            outputs = neural_layer(outputs)
         return outputs
+
+    __call__ = sum
 
     def getDeltas(neural_network, inputs, outputs):
         neural_network(inputs)
@@ -41,9 +45,9 @@ class MLPNeuralNetwork(BaseNeuralNetwork):
                 for n,neuron in enumerate(neural_layer):
                     neuron_weights_deltas = []
                     neuron_weight_derivative = neuron.costDerivative(neuron.output,outputs[n]) * neuron.activationDerivative(neuron.output)
-                    neuron_bias_delta = neuron_weight_detivative
+                    neuron_bias_delta = neuron_weight_derivative
                     for weight in range(len(neuron.weights)):
-                        weight_delta = neuron.inputs[weight] * neuton_weight_derivative
+                        weight_delta = neuron.inputs[weight] * neuron_weight_derivative
                         neuron_weights_deltas.append(weight_delta)
                     layer_weights_deltas.append(neuron_weights_deltas)
                     layer_biases_deltas.append(neuron_bias_delta)
@@ -52,7 +56,7 @@ class MLPNeuralNetwork(BaseNeuralNetwork):
                 for n,neuron in enumerate(neural_layer):
                     neuron_weights_deltas = []
                     error = 0
-                    for n,derivative in enumerate(_neuron_weight_derivative)
+                    for n,derivative in enumerate(_neuron_weights_derivatives):
                         error += derivative * _neural_layer[n].weights[n]
                     neuron_weights_derivative = error * neuron.activationDerivative(neuron.output)
                     neuron_bias_delta = neuron_weights_derivative
@@ -61,7 +65,7 @@ class MLPNeuralNetwork(BaseNeuralNetwork):
                         neuron_weights_deltas.append(weight_delta)
                     layer_weights_deltas.append(neuron_weights_deltas)
                     layer_biases_deltas.append(neuron_bias_delta)
-                    derivadas_pesos_neuronas.append(derivada_peso_neurona)
+                    neuron_weights_derivatives.append(neuron_weights_derivative)
             _neuron_weights_derivatives = neuron_weights_derivatives
             _neural_layer = neural_layer
             net_weights_deltas.insert(0,layer_weights_deltas)
@@ -88,13 +92,13 @@ class MLPNeuralNetwork(BaseNeuralNetwork):
                 total_error += neuron.cost(neuron.output,y[output])
         return total_error
 
-    def train(neural_network,training_set,verbose=False)
+    def train(neural_network,training_set,verbose=False):
         error = neural_network.getError(training_set)
         _iter = 0
         while error > neural_network.MINIMUM_ERROR:
             x,y = random.choice(training_set)
             deltas = neural_network.getDeltas(x,y)
-            neural_network.apply(deltas)
+            neural_network.applyDeltas(deltas)
             error = neural_network.getError(training_set)
             _iter += 1
             if (_iter % 10000) == 0 and verbose:

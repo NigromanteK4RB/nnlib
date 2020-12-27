@@ -39,6 +39,8 @@ class MLPNeuron(BaseNeuron):
         neuron.output = neuron.activation(neuron.sum())
         return neuron.output
 
+    __call__ = computeOutput
+
     def sum(neuron):
         return sum([x*y for x,y in zip(neuron.inputs,neuron.weights)]) + neuron.bias
     
