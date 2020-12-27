@@ -1,8 +1,8 @@
 import random
 
 class BaseNeuralNetwork(list):
-    ALPHA = 0.5
-    MINIMUM_ERROR = 0.0001
+    ALPHA = 0.4
+    MINIMUM_ERROR = 0.0000009
 
     def sum(neural_network,inputs):
         raise NotImplementedError
@@ -107,3 +107,4 @@ class MLPNeuralNetwork(BaseNeuralNetwork):
         except KeyboardInterrupt:
             pass
         print(_iter,error)
+
