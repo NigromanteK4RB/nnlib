@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.9
 from nnlib import MLPNeuron as Neuron
 from nnlib import MLPNeuralLayer as NeuralLayer
-from nnlib import MLPNeuralNetwork as NeuralNetwork
+from nnlib import ThreadedMLPNeuralNetwork as NeuralNetwork
 
 
 neural_network = NeuralNetwork([
