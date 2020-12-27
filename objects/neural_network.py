@@ -93,14 +93,17 @@ class MLPNeuralNetwork(BaseNeuralNetwork):
         return total_error
 
     def train(neural_network,training_set,verbose=False):
-        error = neural_network.getError(training_set)
-        _iter = 0
-        while error > neural_network.MINIMUM_ERROR:
-            x,y = random.choice(training_set)
-            deltas = neural_network.getDeltas(x,y)
-            neural_network.applyDeltas(deltas)
+        try:
             error = neural_network.getError(training_set)
-            _iter += 1
-            if (_iter % 10000) == 0 and verbose:
-                print(_iter,error)
+            _iter = 0
+            while error > neural_network.MINIMUM_ERROR:
+                x,y = random.choice(training_set)
+                deltas = neural_network.getDeltas(x,y)
+                neural_network.applyDeltas(deltas)
+                error = neural_network.getError(training_set)
+                _iter += 1
+                if (_iter % 10000) == 0 and verbose:
+                    print(_iter,error)
+        except KeyboardInterrupt:
+            pass
         print(_iter,error)
