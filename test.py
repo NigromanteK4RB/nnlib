@@ -1,13 +1,17 @@
 #!/usr/bin/env python3.9
 from nnlib import MLPNeuron as Neuron
 from nnlib import MLPNeuralLayer as NeuralLayer
-from nnlib import ThreadedMLPNeuralNetwork as NeuralNetwork
+from nnlib import NetworkedMLPNeuralNetwork as NeuralNetwork
 
 
 neural_network = NeuralNetwork([
     NeuralLayer([Neuron(),Neuron(),]),
     NeuralLayer([Neuron(),]),
 ])
+neural_network.servers = [
+    ('gitd.nautilus.net',16000),
+    ('adrian.nautilus.net',16000),
+]
 
 training_set = [
     [[0,0],[0]],
